@@ -988,6 +988,44 @@
                 align-items: center;
             }
         }
+
+        /* Contact Display & Toast */
+        #contact-info-display {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(0, 245, 212, 0.05);
+            border: 1px solid rgba(0, 245, 212, 0.2);
+            border-radius: 12px;
+            color: var(--accent-cyan);
+            font-weight: 500;
+            display: none;
+            animation: contactFadeIn 0.3s ease;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-purple);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            z-index: 3000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: none;
+            animation: toastSlideUp 0.3s ease;
+        }
+
+        @keyframes contactFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes toastSlideUp {
+            from { opacity: 0; transform: translate(-50%, 20px); }
+            to { opacity: 1; transform: translate(-50%, 0); }
+        }
     </style>
 </head>
 
@@ -1387,12 +1425,13 @@
         <div class="container">
             <h2 class="section-title fade-in">Experience & <span class="text-gradient">Leadership</span></h2>
             <div class="experience-grid">
-                
+
                 <div class="glass-card exp-card fade-in">
                     <div class="exp-icon">🏦</div>
                     <div class="exp-details">
                         <h3>Software Engineering Intern <span class="text-gradient">— BiatIT</span></h3>
-                        <p class="project-desc">Developed "BankApp", a secure banking application, focusing on JWT security, administrative validation workflows, and responsive frontend architecture.</p>
+                        <p class="project-desc">Developed "BankApp", a secure banking application, focusing on JWT
+                            security, administrative validation workflows, and responsive frontend architecture.</p>
                     </div>
                 </div>
 
@@ -1470,14 +1509,15 @@
                 <p>Let's build something impactful together. I'm currently open for new opportunities.</p>
 
                 <div class="social-links">
-                    <a href="tel:+216XXXXXXXX" class="social-link" title="Phone" target="_blank">📞</a>
-                    <a href="mailto:mohamedabdelwahed279@gmail.com" class="social-link" title="Email"
-                        target="_blank">✉</a>
+                    <a href="javascript:void(0)" onclick="showContactInfo('+216 58 444 030', 'Phone')" class="social-link" title="Click to show Phone">📞</a>
+                    <a href="javascript:void(0)" onclick="showContactInfo('mohamedabdelwahed279@gmail.com', 'Email')" class="social-link" title="Click to show Email">✉</a>
                     <a href="https://linkedin.com/in/mohamed-abdelwahed-547ba6398/" class="social-link" title="LinkedIn"
                         target="_blank">in</a>
                     <a href="https://github.com/Mohamedabdelwahed123-nf" class="social-link" title="GitHub"
                         target="_blank">⌨</a>
                 </div>
+
+                <div id="contact-info-display"></div>
 
                 <!-- TODO: Put your CV PDF link here as well -->
                 <a href="CV_Mohamed_Abdelwahed (1).pdf" class="btn btn-primary" target="_blank">Download CV</a>
@@ -1673,6 +1713,51 @@
 
         fadeElements.forEach(el => appearOnScroll.observe(el));
         timelineItems.forEach(el => appearOnScroll.observe(el));
+
+        // Contact Info Display Logic
+        function showContactInfo(info, type) {
+            const display = document.getElementById('contact-info-display');
+            display.style.display = 'block';
+            display.innerHTML = `<span style="color: var(--text-secondary)">${type}:</span> ${info}`;
+            
+            // Copy to clipboard
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(info).then(() => {
+                    showToast(`${type} copied to clipboard!`);
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                });
+            } else {
+                // Fallback for older browsers
+                const textArea = document.createElement("textarea");
+                textArea.value = info;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showToast(`${type} copied to clipboard!`);
+                } catch (err) {
+                    console.error('Fallback copy failed', err);
+                }
+                document.body.removeChild(textArea);
+            }
+        }
+
+        function showToast(message) {
+            let toast = document.getElementById('toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'toast';
+                toast.className = 'toast';
+                document.body.appendChild(toast);
+            }
+            toast.innerText = message;
+            toast.style.display = 'block';
+            
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
 
     </script>
 </body>
