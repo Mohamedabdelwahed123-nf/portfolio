@@ -37,6 +37,7 @@
 
         html {
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         body {
@@ -81,7 +82,7 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
+            width: 100%;
             height: 100vh;
             z-index: -1;
             overflow: hidden;
@@ -281,7 +282,7 @@
 
         /* Hero Section */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
@@ -331,6 +332,7 @@
         .hero-buttons {
             display: flex;
             gap: 1rem;
+            flex-wrap: wrap;
             margin-bottom: 2rem;
         }
 
@@ -381,6 +383,7 @@
         .hero-stats-row {
             display: flex;
             gap: 2rem;
+            flex-wrap: wrap;
             border-top: 1px solid var(--glass-border);
             padding-top: 1.5rem;
         }
@@ -904,6 +907,7 @@
                 width: 280px;
                 height: 280px;
                 order: -1;
+                margin-top: 5rem;
             }
 
             .stats-grid {
@@ -1018,13 +1022,27 @@
         }
 
         @keyframes contactFadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes toastSlideUp {
-            from { opacity: 0; transform: translate(-50%, 20px); }
-            to { opacity: 1; transform: translate(-50%, 0); }
+            from {
+                opacity: 0;
+                transform: translate(-50%, 20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
         }
     </style>
 </head>
@@ -1081,7 +1099,7 @@
 
                 <div class="hero-stats-row">
                     <div class="hero-stat-item">
-                        <span class="hero-stat-value">6+</span>
+                        <span class="hero-stat-value">7+</span>
                         <span class="hero-stat-label">Projects</span>
                     </div>
                     <div class="hero-stat-item">
@@ -1125,7 +1143,8 @@
                     <h3 class="project-title">DAR.COM</h3>
                     <p class="project-desc">Full-stack real estate management system with admin dashboard, agent
                         tracking, contract auto-fill, payment versements tracking, PDF generation, and role-based
-                        access.</p>
+                        access. AI integration planned for smart recommendations, document analysis, and automated
+                        insights.</p>
                     <div class="project-tags">
                         <span class="tag">ASP.NET Core 8</span>
                         <span class="tag">C#</span>
@@ -1137,10 +1156,10 @@
 
                 <!-- Project 2 -->
                 <div class="glass-card project-card fade-in"
-                    data-github="https://github.com/Mohamedabdelwahed123-nf/Projet-BiatIT">
+                    data-github="https://github.com/Mohamedabdelwahed123-nf/Projet-BiatIT" data-image="images/Biat.png">
                     <div class="project-header">
                         <div class="project-icon">💳</div>
-                        <span class="project-status">🟡 In Progress</span>
+                        <span class="project-status">🔵 Completed</span>
                     </div>
                     <h3 class="project-title">BankApp</h3>
                     <p class="project-desc">Secure banking platform with JWT authentication, account/card management,
@@ -1155,7 +1174,9 @@
 
                 <!-- Project 3 -->
                 <div class="glass-card project-card fade-in"
-                    data-github="https://github.com/Mohamedabdelwahed123-nf/DOproject">
+                    data-github="https://github.com/Mohamedabdelwahed123-nf/DOproject"
+                    data-video="videos/Retro-Commerce.mkv">
+
                     <div class="project-header">
                         <div class="project-icon">🎵</div>
                         <span class="project-status">🔵 Completed</span>
@@ -1171,24 +1192,8 @@
                     </div>
                 </div>
 
-                <!-- Project 4 -->
-                <div class="glass-card project-card fade-in"
-                    data-github="https://github.com/Mohamedabdelwahed123-nf/LIEN_DU_PROJET_ICI">
-                    <div class="project-header">
-                        <div class="project-icon">⚽</div>
-                        <span class="project-status">🟣 In Design</span>
-                    </div>
-                    <h3 class="project-title">Fantasy Football</h3>
-                    <p class="project-desc">Fantasy football platform inspired by Premier League Fantasy with team
-                        selection, player stats, weekly scoring, and leaderboards.</p>
-                    <div class="project-tags">
-                        <span class="tag">HTML</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">JavaScript</span>
-                    </div>
-                </div>
 
-                <!-- Project 5 -->
+                <!-- Project 4 -->
                 <div class="glass-card project-card fade-in"
                     data-github="https://github.com/Mohamedabdelwahed123-nf/LIEN_DU_PROJET_ICI">
                     <div class="project-header">
@@ -1204,9 +1209,9 @@
                     </div>
                 </div>
 
-                <!-- Project 6 -->
+                <!-- Project 5 -->
                 <div class="glass-card project-card fade-in"
-                    data-github="https://github.com/Mohamedabdelwahed123-nf/Haniny">
+                    data-github="https://github.com/Mohamedabdelwahed123-nf/Haniny" data-video="videos/Haniny1.mp4">
                     <div class="project-header">
                         <div class="project-icon">📷</div>
                         <span class="project-status">🟢 Hackathon</span>
@@ -1220,9 +1225,11 @@
                     </div>
                 </div>
 
-                <!-- Project 7 -->
+                <!-- Project 6 -->
                 <div class="glass-card project-card fade-in"
-                    data-github="https://github.com/Mohamedabdelwahed123-nf/DOproject">
+                    data-github="https://github.com/Mohamedabdelwahed123-nf/DOproject"
+                    data-video="videos/BrokerCore-AI.mp4">
+
                     <div class="project-header">
                         <div class="project-icon">🤖</div>
                         <span class="project-status">🟢 Completed</span>
@@ -1237,6 +1244,27 @@
                         <span class="tag">GPT-4o</span>
                         <span class="tag">Tailwind CSS</span>
                         <span class="tag">MLOps</span>
+                    </div>
+                </div>
+
+                <!-- Project 7 -->
+                <div class="glass-card project-card fade-in"
+                    data-github="https://github.com/Mohamedabdelwahed123-nf/project_wehelp"
+                    data-video="videos/TrustAI.mp4">
+                    <div class="project-header">
+                        <div class="project-icon">🛡️</div>
+                        <span class="project-status">🟢 Hackathon</span>
+                    </div>
+                    <h3 class="project-title">TRUSTIA</h3>
+                    <p class="project-desc">Credit Decision & Explainability Platform. Full-stack prototype using
+                        Python/FastAPI and Angular, leveraging Qdrant vector DB and AI agents for automated credit
+                        evaluation and decision explainability.</p>
+                    <div class="project-tags">
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">Angular</span>
+                        <span class="tag">Qdrant</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">AI Agents</span>
                     </div>
                 </div>
 
@@ -1427,6 +1455,16 @@
             <div class="experience-grid">
 
                 <div class="glass-card exp-card fade-in">
+                    <div class="exp-icon">🛡️</div>
+                    <div class="exp-details">
+                        <h3>Hackathon Participant <span class="text-gradient">— Trustia (Credit AI)</span></h3>
+                        <p class="project-desc">Developed a prototype for credit evaluation using Qdrant and FastAPI,
+                            featuring a "Similarity Radar" for case explainability and automated risk scoring agents.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-card exp-card fade-in">
                     <div class="exp-icon">🏦</div>
                     <div class="exp-details">
                         <h3>Software Engineering Intern <span class="text-gradient">— BiatIT</span></h3>
@@ -1449,7 +1487,7 @@
                     <div class="exp-details">
                         <h3>Hackathon Participant <span class="text-gradient">— Hack For Good 4.0</span></h3>
                         <p class="project-desc">Designed and built the concept for Haniny, an AI-powered driver
-                            monitoring system prototypes in a highly competitive 48hr environment.</p>
+                            monitoring system prototypes in a highly competitive environment.</p>
                     </div>
                 </div>
 
@@ -1509,8 +1547,10 @@
                 <p>Let's build something impactful together. I'm currently open for new opportunities.</p>
 
                 <div class="social-links">
-                    <a href="javascript:void(0)" onclick="showContactInfo('+216 58 444 030', 'Phone')" class="social-link" title="Click to show Phone">📞</a>
-                    <a href="javascript:void(0)" onclick="showContactInfo('mohamedabdelwahed279@gmail.com', 'Email')" class="social-link" title="Click to show Email">✉</a>
+                    <a href="javascript:void(0)" onclick="showContactInfo('+216 58 444 030', 'Phone')"
+                        class="social-link" title="Click to show Phone">📞</a>
+                    <a href="javascript:void(0)" onclick="showContactInfo('mohamedabdelwahed279@gmail.com', 'Email')"
+                        class="social-link" title="Click to show Email">✉</a>
                     <a href="https://linkedin.com/in/mohamed-abdelwahed-547ba6398/" class="social-link" title="LinkedIn"
                         target="_blank">in</a>
                     <a href="https://github.com/Mohamedabdelwahed123-nf" class="social-link" title="GitHub"
@@ -1574,12 +1614,31 @@
                 document.getElementById('modalTitle').innerText = card.querySelector('.project-title').innerText;
                 document.getElementById('modalDesc').innerText = card.querySelector('.project-desc').innerText;
 
-                // Demo Media Placeholder
-                document.getElementById('modalMedia').innerHTML = `
-                    <!-- To add a real image, use <img src="demo.jpg" style="width:100%; border-radius:12px; object-fit:cover;"> -->
-                    <!-- To add a real video, use <video src="demo.mp4" controls style="width:100%; border-radius:12px;"></video> -->
-                    <p>📸 Replace me with Photo / Demo Video element.</p>
-                `;
+                // Media: image et/ou vidéo selon les attributs data-image et data-video
+                const videoSrc = card.getAttribute('data-video');
+                const imageSrc = card.getAttribute('data-image');
+                let mediaHtml = '';
+
+                if (imageSrc) {
+                    mediaHtml += `<img src="${imageSrc}" alt="${card.querySelector('.project-title').innerText}" style="width:100%; border-radius:12px; margin-top:1rem; object-fit:cover; border: 1px solid rgba(0, 245, 212, 0.2);">`;
+                }
+
+                if (videoSrc) {
+                    const videoType = videoSrc.endsWith('.mkv') ? 'video/x-matroska' : 'video/mp4';
+                    mediaHtml += `
+                        <video controls autoplay muted loop playsinline style="width:100%; border-radius:12px; margin-top:1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                            <source src="${videoSrc}" type="${videoType}">
+                            Votre navigateur ne supporte pas la lecture de cette vidéo.
+                        </video>
+                    `;
+                }
+
+                if (!videoSrc && !imageSrc) {
+                    mediaHtml = `<p style="color: var(--text-secondary); margin-top:1rem;">📸 Aucune démo disponible pour ce projet.</p>`;
+                }
+
+                document.getElementById('modalMedia').innerHTML = mediaHtml;
+
 
                 // GitHub Link Setup
                 const projectGhLink = card.getAttribute('data-github') || '#';
@@ -1719,7 +1778,7 @@
             const display = document.getElementById('contact-info-display');
             display.style.display = 'block';
             display.innerHTML = `<span style="color: var(--text-secondary)">${type}:</span> ${info}`;
-            
+
             // Copy to clipboard
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(info).then(() => {
@@ -1753,7 +1812,7 @@
             }
             toast.innerText = message;
             toast.style.display = 'block';
-            
+
             setTimeout(() => {
                 toast.style.display = 'none';
             }, 3000);
