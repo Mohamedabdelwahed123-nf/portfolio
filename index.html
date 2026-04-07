@@ -1175,7 +1175,7 @@
                 <!-- Project 3 -->
                 <div class="glass-card project-card fade-in"
                     data-github="https://github.com/Mohamedabdelwahed123-nf/DOproject"
-                    data-video="videos/Retro-Commerce.mkv">
+                    data-video="https://www.youtube.com/watch?v=Ue40W5FI2fQ">
 
                     <div class="project-header">
                         <div class="project-icon">🎵</div>
@@ -1211,7 +1211,7 @@
 
                 <!-- Project 5 -->
                 <div class="glass-card project-card fade-in"
-                    data-github="https://github.com/Mohamedabdelwahed123-nf/Haniny" data-video="videos/Haniny1.mp4">
+                    data-github="https://github.com/Mohamedabdelwahed123-nf/Haniny" data-video="https://www.youtube.com/watch?v=JclxfFZMXRw">
                     <div class="project-header">
                         <div class="project-icon">📷</div>
                         <span class="project-status">🟢 Hackathon</span>
@@ -1228,7 +1228,7 @@
                 <!-- Project 6 -->
                 <div class="glass-card project-card fade-in"
                     data-github="https://github.com/Mohamedabdelwahed123-nf/DOproject"
-                    data-video="videos/BrokerCore-AI.mp4">
+                    data-video="https://www.youtube.com/watch?v=rrnUuK9G6zI">
 
                     <div class="project-header">
                         <div class="project-icon">🤖</div>
@@ -1250,7 +1250,7 @@
                 <!-- Project 7 -->
                 <div class="glass-card project-card fade-in"
                     data-github="https://github.com/Mohamedabdelwahed123-nf/project_wehelp"
-                    data-video="videos/TrustAI.mp4">
+                    data-video="https://www.youtube.com/watch?v=3R58IfF81bQ">
                     <div class="project-header">
                         <div class="project-icon">🛡️</div>
                         <span class="project-status">🟢 Hackathon</span>
@@ -1624,13 +1624,37 @@
                 }
 
                 if (videoSrc) {
-                    const videoType = videoSrc.endsWith('.mkv') ? 'video/x-matroska' : 'video/mp4';
-                    mediaHtml += `
-                        <video controls autoplay muted loop playsinline style="width:100%; border-radius:12px; margin-top:1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-                            <source src="${videoSrc}" type="${videoType}">
-                            Votre navigateur ne supporte pas la lecture de cette vidéo.
-                        </video>
-                    `;
+                    if (videoSrc.includes('youtube.com') || videoSrc.includes('youtu.be')) {
+                        // YouTube Embed Logic
+                        let videoId = '';
+                        if (videoSrc.includes('v=')) {
+                            videoId = videoSrc.split('v=')[1].split('&')[0];
+                        } else if (videoSrc.includes('youtu.be/')) {
+                            videoId = videoSrc.split('youtu.be/')[1].split('?')[0];
+                        } else if (videoSrc.includes('embed/')) {
+                            videoId = videoSrc.split('embed/')[1].split('?')[0];
+                        }
+
+                        mediaHtml += `
+                            <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; margin-top: 1rem; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1" 
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        `;
+                    } else {
+                        // Local video logic (fallback)
+                        const videoType = videoSrc.endsWith('.mkv') ? 'video/x-matroska' : 'video/mp4';
+                        mediaHtml += `
+                            <video controls autoplay muted loop playsinline style="width:100%; border-radius:12px; margin-top:1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                                <source src="${videoSrc}" type="${videoType}">
+                                Votre navigateur ne supporte pas la lecture de cette vidéo.
+                            </video>
+                        `;
+                    }
                 }
 
                 if (!videoSrc && !imageSrc) {
